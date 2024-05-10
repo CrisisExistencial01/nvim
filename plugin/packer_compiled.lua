@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/cris/.cache/nvim/packer_hererocks/2.1.1696795921/share/lua/5.1/?.lua;/home/cris/.cache/nvim/packer_hererocks/2.1.1696795921/share/lua/5.1/?/init.lua;/home/cris/.cache/nvim/packer_hererocks/2.1.1696795921/lib/luarocks/rocks-5.1/?.lua;/home/cris/.cache/nvim/packer_hererocks/2.1.1696795921/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/cris/.cache/nvim/packer_hererocks/2.1.1696795921/lib/lua/5.1/?.so"
+local package_path_str = "/home/cris/.cache/nvim/packer_hererocks/2.1.1702233742/share/lua/5.1/?.lua;/home/cris/.cache/nvim/packer_hererocks/2.1.1702233742/share/lua/5.1/?/init.lua;/home/cris/.cache/nvim/packer_hererocks/2.1.1702233742/lib/luarocks/rocks-5.1/?.lua;/home/cris/.cache/nvim/packer_hererocks/2.1.1702233742/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/cris/.cache/nvim/packer_hererocks/2.1.1702233742/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -74,14 +74,71 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["kotlin-vim"] = {
+    loaded = false,
+    needs_bufread = true,
+    only_cond = false,
+    path = "/home/cris/.local/share/nvim/site/pack/packer/opt/kotlin-vim",
+    url = "https://github.com/udalov/kotlin-vim"
+  },
+  ["lualine.nvim"] = {
+    loaded = true,
+    path = "/home/cris/.local/share/nvim/site/pack/packer/start/lualine.nvim",
+    url = "https://github.com/nvim-lualine/lualine.nvim"
+  },
+  ["nvim-fugitive"] = {
+    loaded = true,
+    path = "/home/cris/.local/share/nvim/site/pack/packer/start/nvim-fugitive",
+    url = "https://github.com/doronbehar/nvim-fugitive"
+  },
+  ["nvim-web-devicons"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/cris/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons",
+    url = "https://github.com/nvim-tree/nvim-web-devicons"
+  },
   ["tokyonight.nvim"] = {
     loaded = true,
     path = "/home/cris/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
+  },
+  ["vim-arduino"] = {
+    loaded = false,
+    needs_bufread = true,
+    only_cond = false,
+    path = "/home/cris/.local/share/nvim/site/pack/packer/opt/vim-arduino",
+    url = "https://github.com/stevearc/vim-arduino"
+  },
+  ["vim-arduino-syntax"] = {
+    loaded = false,
+    needs_bufread = true,
+    only_cond = false,
+    path = "/home/cris/.local/share/nvim/site/pack/packer/opt/vim-arduino-syntax",
+    url = "https://github.com/sudar/vim-arduino-syntax"
   }
 }
 
 time([[Defining packer_plugins]], false)
+vim.cmd [[augroup packer_load_aucmds]]
+vim.cmd [[au!]]
+  -- Filetype lazy-loads
+time([[Defining lazy-load filetype autocommands]], true)
+vim.cmd [[au FileType ino ++once lua require("packer.load")({'vim-arduino-syntax', 'vim-arduino'}, { ft = "ino" }, _G.packer_plugins)]]
+vim.cmd [[au FileType kotlin ++once lua require("packer.load")({'kotlin-vim'}, { ft = "kotlin" }, _G.packer_plugins)]]
+vim.cmd [[au FileType arduino ++once lua require("packer.load")({'vim-arduino-syntax', 'vim-arduino'}, { ft = "arduino" }, _G.packer_plugins)]]
+time([[Defining lazy-load filetype autocommands]], false)
+vim.cmd("augroup END")
+vim.cmd [[augroup filetypedetect]]
+time([[Sourcing ftdetect script at: /home/cris/.local/share/nvim/site/pack/packer/opt/vim-arduino-syntax/ftdetect/arduino.vim]], true)
+vim.cmd [[source /home/cris/.local/share/nvim/site/pack/packer/opt/vim-arduino-syntax/ftdetect/arduino.vim]]
+time([[Sourcing ftdetect script at: /home/cris/.local/share/nvim/site/pack/packer/opt/vim-arduino-syntax/ftdetect/arduino.vim]], false)
+time([[Sourcing ftdetect script at: /home/cris/.local/share/nvim/site/pack/packer/opt/vim-arduino/ftdetect/arduino.vim]], true)
+vim.cmd [[source /home/cris/.local/share/nvim/site/pack/packer/opt/vim-arduino/ftdetect/arduino.vim]]
+time([[Sourcing ftdetect script at: /home/cris/.local/share/nvim/site/pack/packer/opt/vim-arduino/ftdetect/arduino.vim]], false)
+time([[Sourcing ftdetect script at: /home/cris/.local/share/nvim/site/pack/packer/opt/kotlin-vim/ftdetect/kotlin.vim]], true)
+vim.cmd [[source /home/cris/.local/share/nvim/site/pack/packer/opt/kotlin-vim/ftdetect/kotlin.vim]]
+time([[Sourcing ftdetect script at: /home/cris/.local/share/nvim/site/pack/packer/opt/kotlin-vim/ftdetect/kotlin.vim]], false)
+vim.cmd("augroup END")
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

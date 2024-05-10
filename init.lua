@@ -13,11 +13,16 @@ require('packer').startup(function()
   		'nvim-lualine/lualine.nvim',
   		requires = { 'nvim-tree/nvim-web-devicons', opt = true }
 	}	
+	use {'sudar/vim-arduino-syntax', ft = {'arduino', 'ino'}}
+	use {'stevearc/vim-arduino', ft = {'arduino', 'ino'}}
+-- Kotlin
+	use {'udalov/kotlin-vim'}
 end)
 -- Cargar y configurar el tema
 vim.o.runtimepath = vim.o.runtimepath .. ',/~/.config/nvim/'
 vim.cmd('set number')
 vim.cmd('set relativenumber')
+vim.cmd('set mouse=a')
 vim.cmd('colorscheme tokyonight-night')
 vim.o.laststatus = 0
 vim.wo.statusline = ""
